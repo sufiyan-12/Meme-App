@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar: View = findViewById(R.id.progressBar)
         val shareButton: Button = findViewById(R.id.shareButton)
         val nextButton: Button = findViewById(R.id.nextButton)
+        val title_txt: TextView = findViewById(R.id.title_text)
 
         progressBar.visibility = View.VISIBLE
 
@@ -47,6 +48,9 @@ class MainActivity : AppCompatActivity() {
             { response ->
                 val view = findViewById<ImageView>(R.id.memeView)
                 currentImageUrl = response.getString("url")
+                val title: String = response.getString("title")
+                title_txt.text = title
+
                 Glide.with(this).load(currentImageUrl).listener(object: RequestListener<Drawable>{
                     override fun onLoadFailed(
                         e: GlideException?,
